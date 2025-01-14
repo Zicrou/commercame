@@ -10,12 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_12_081354) do
-  create_table "stocks", force: :cascade do |t|
+ActiveRecord::Schema[8.0].define(version: 2025_01_13_235526) do
+  create_table "produits", force: :cascade do |t|
     t.string "name"
     t.integer "quantity"
-    t.integer "price"
+    t.decimal "price"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "ventes", force: :cascade do |t|
+    t.integer "quantity"
+    t.decimal "price"
+    t.integer "produit_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["produit_id"], name: "index_ventes_on_produit_id"
+  end
+
+  add_foreign_key "ventes", "produits"
 end

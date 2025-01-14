@@ -1,0 +1,45 @@
+<%= form_with(model: vente) do |form| %>
+  <% if vente.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(vente.errors.count, "error") %> prohibited this vente from being saved:</h2>
+
+      <ul>
+        <% vente.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<p style="color: green"><%= notice %></p>
+
+
+<div>
+    <%= form.label :Produit, style: "display: block" %>
+    <%#= form.collection_select(:produit, :produit_id, Produit.all, :id, :name) %>
+    <%= form.collection_select :produit_id, Produit.where("quantity > ?", 0), :id, :name %>
+
+  </div>
+
+  <div>
+    <%= form.label :quantity, style: "display: block" %>
+    <%= form.number_field :quantity %>
+  </div>
+
+  <div>
+    <%= form.label :price, style: "display: block" %>
+    <%= form.text_field :price %>
+  </div>
+
+  <%
+=begin%>
+ <div>
+    <%= form.label :produit_id, style: "display: block" %>
+    <%= form.text_field :produit_id %>
+  </div> 
+<%
+=end%>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

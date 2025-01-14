@@ -62,5 +62,5 @@ group :test do
   gem "selenium-webdriver"
 end
 gem "dartsass-rails"
-# gem "bootstrap", "~> 5.3.3"
 gem 'bootstrap', '~> 5.3', '>= 5.3.3'
+gem 'byebug', '~> 11.1', '>= 11.1.3'

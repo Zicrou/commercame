@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :ventes
+  resources :produits
   resources :stocks
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
