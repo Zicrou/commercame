@@ -45,15 +45,24 @@ class VentesController < ApplicationController
 
   # PATCH/PUT /ventes/1 or /ventes/1.json
   def update
+    @produit = Produit.find(vente_params[:produit_id])
+    @quantity_from_params = vente_params[:quantity].to_i
+    if @quantity_from_params > @vente.quantity
+      @produit.quantity = @produit.quantity - (@quantity_from_params - @vente.quantity)
+    elsif @quantity_from_params < @vente.quantity
+      @produit.quantity = @produit.quantity + (@vente.quantity - @quantity_from_params)
+    end
+    @produit.save
     respond_to do |format|
-      if @vente.update(vente_params)
+      
+      if @vente.update(vente_params) 
         format.html { redirect_to @vente, notice: "Vente was successfully updated." }
         format.json { render :show, status: :ok, location: @vente }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @vente.errors, status: :unprocessable_entity }
       end
-    end
+    end      
   end
 
   # DELETE /ventes/1 or /ventes/1.json
