@@ -3,7 +3,64 @@ class VentesController < ApplicationController
 
   # GET /ventes or /ventes.json
   def index
-    @ventes = Vente.all
+    @vents = Vente.where("quantity > ?", 0)
+
+    @ventes = @vents.group_by{|m| m.created_at.beginning_of_month }
+    @total_per_year = @vents.group_by { |y| y.created_at.beginning_of_year }.transform_values { |v| v.sum(&:price) }
+    #@total = @vents.sum(&:price)
+
+    @reparations = Reparation.all
+    @rep_per_month = @reparations.group_by{|m| m.created_at.beginning_of_month }.transform_values { |v| v.sum(&:price) }
+
+    puts "Reparations per month: #{@rep_per_month}"
+    @rep_per_year = @reparations.group_by { |y| y.created_at.beginning_of_year }.transform_values { |v| v.sum(&:price) }
+    puts "Reparations per year:"    
+    puts "Reparations per year: avec each loop"    
+    @rep_per_year.each do |year, price|
+      puts "#{year.strftime('%B %Y')}:  ,Price: #{price} FCFA"
+      
+    end
+    #@reparations_and_vent_prices = 0 
+
+    # @rep_per_month = @reparations.group_by{|m| m.created_at.beginning_of_month }.transform_values { |v| v.sum(&:price) }
+    @rep_per_year = @reparations.group_by { |y| y.created_at.beginning_of_year }.transform_values { |v| v.sum(&:price) }
+    puts "Reparations per year: #{@rep_per_month}"
+    @rep_per_year.each do |year, price|
+      puts "#{year.strftime('%B %Y')}:  ,Price: #{price} FCFA"
+    end
+
+    
+    # @rep_per_week = @reparations.group_by{|m| m.created_at.beginning_of_week }.transform_values { |v| v.sum(&:price) }
+    
+    #Recuperer les reparations qui  ont eu lieu dans le mois et l'année en se basant sur @vnets(donc avec un loop )
+    # @reparations_and_vent_prices= 0
+    # @vents.each do |vent|
+    #   reparations_and_vent = @reparations.select do |reparation| 
+    #     reparation.created_at.year == vent.created_at.year && reparation.created_at.month == vent.created_at.month
+    #     #@reparations_and_vent_prices = reparations_and_vent.sum(&:price) + vent.sum(&:price)
+    #   end
+    #   puts "Reparations for vente in #{vent.created_at.strftime('%B %Y')}:"
+    #   reparations_and_vent.each do |reparation|
+    #   puts "Reparation ID: #{reparation.id}, Price: #{reparation.price}, Date: #{reparation.created_at.month}, #{reparation.created_at.year}"
+    #   #@reparations_and_vent_prices = reparations_and_vent.sum(&:price)
+    #   # puts "Total: #{@reparations_and_vent_prices}"
+    #   end
+    # end
+
+
+
+    #
+    #@vents = Vente.where(user_id: current_user.id)
+    
+    
+    # Afficher les ventes par semaines
+    #@ventes_per_week = @vents.group_by{|m| m.created_at.beginning_of_week }
+
+
+    # Afficher les ventes par mois
+    #@ventes = @vents.group_by{|m| m.created_at.beginning_of_month }
+    # # Afficher les ventes par semaines
+     #@ventes_per_week = @vents.group_by{|m| m.created_at.beginning_of_week }
   end
 
   # GET /ventes/1 or /ventes/1.json

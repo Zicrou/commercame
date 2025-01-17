@@ -1,0 +1,50 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Reparations" %>
+
+<div class="form-group col-4 mx-auto ">
+  <%= link_to "Ajouter +", new_reparation_path, class:"btn btn-primary " %>
+</div>
+<h1>Reparations</h1>
+<div id="reparations">
+  <% @reps.each do |month, reparations| %>
+    <h2><%= month.strftime('%B %Y')  %> | Total mensuel: <%= reparations.sum(&:price)  %>F</h2>
+
+    <% reparations.each do |reparation| %>
+
+    <div class="mb-5">
+      <div class="card">
+        <div class="card-header">
+          <%= render reparation %>
+        </div>
+        <div class="card-body d-flex justify-content-around">
+          <%= link_to "Modifier", edit_reparation_path(reparation), class:"btn btn-warning" %> 
+          <%= link_to "Voir +", reparation, class:"btn btn-primary" %>
+        </div>
+      </div>
+<br>
+    <% end %>
+      <hr>
+  <% end %>
+
+<%
+=begin%>
+ 
+    <% @reparations.each do |reparation| %>
+    <div class="card">
+      <div class="card-header">
+        <%= render reparation %>
+      </div>
+      <div class="card-body d-flex justify-content-around">
+        <%= link_to "Modifier", edit_reparation_path(reparation), class:"btn btn-warning" %> 
+        <%= link_to "Voir +", reparation, class:"btn btn-primary" %>
+      </div>
+    </div>
+    <p>
+      
+    </p>
+  <% end %> 
+<%
+=end%>
+</div>
+

@@ -1,0 +1,22 @@
+<div id="<%= dom_id reparation %>">
+  <p>
+    <strong>Reparation:</strong>
+    <%= reparation.name %>
+  </p>
+
+  <p>
+    <strong>Probleme:</strong>
+    <%= reparation.probleme %>
+  </p>
+
+  <p>
+    <strong>Montant:</strong>
+    <%= reparation.price %>
+  </p>
+
+  <p>
+    <strong>Date:</strong>
+    <%= reparation.created_at.strftime('%B %Y') %>
+  </p>
+
+</div>

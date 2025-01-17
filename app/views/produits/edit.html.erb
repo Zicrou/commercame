@@ -1,12 +1,13 @@
 <% content_for :title, "Editing produit" %>
 
-<h1>Editing produit</h1>
+<h1>Faire une modification</h1>
+
 
 <%= render "form", produit: @produit %>
 
 <br>
 
-<div>
-  <%= link_to "Show this produit", @produit %> |
-  <%= link_to "Back to produits", produits_path %>
+<div class="d-flex justify-content-around">
+  <%= link_to "Retour", produits_path, class:"btn btn-outline-primary" %>
+  <%= link_to "Voir +", @produit, class:"btn btn-primary" %> 
 </div>

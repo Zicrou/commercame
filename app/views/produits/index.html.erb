@@ -1,16 +1,25 @@
 <p style="color: green"><%= notice %></p>
-
+<div class="form-group col-4 d-flex mx-auto ">
+  <%= link_to "Ajouter +", new_produit_path, class:"form-control btn btn-primary" %>
+</div>
 <% content_for :title, "Produits" %>
 
 <h1>Liste des Produits</h1>
 
 <div id="produits">
   <% @produits.each do |produit| %>
-    <%= render produit %>
+    <div class="card">
+      <div class="card-header">
+        <%= render produit %>
+      </div>
+      <div class="card-body d-flex justify-content-around">
+        <%= link_to "Modifier", edit_produit_path(produit), class:"btn btn-warning" %> 
+        <%= link_to "Voir +", produit, class:"btn btn-primary" %>
+      </div>
+    </div>
     <p>
-      <%= link_to "Show this produit", produit %>
+      
     </p>
   <% end %>
 </div>
 
-<%= link_to "New produit", new_produit_path %>

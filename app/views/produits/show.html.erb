@@ -1,10 +1,15 @@
 <p style="color: green"><%= notice %></p>
-
-<%= render @produit %>
-
-<div>
-  <%= link_to "Edit this produit", edit_produit_path(@produit) %> |
-  <%= link_to "Back to produits", produits_path %>
-
-  <%= button_to "Destroy this produit", @produit, method: :delete %>
+<div class="mb-3">
+  <div class="card">
+    <div class="card-header">
+      <%= render @produit %>
+    </div>
+    <div class="card-body">
+      <div class="d-flex justify-content-around">
+        <%= link_to "Retour", produits_path, class:"btn btn-outline-primary" %>
+        <%= link_to "Modification", edit_produit_path(@produit), class:"btn btn-warning" %> 
+        <%= button_to "Destroy this produit", @produit, method: :delete, class:"btn btn-danger" %>
+      </div>
+    </div>
+  </div>
 </div>

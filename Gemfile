@@ -64,3 +64,4 @@ end
 gem "dartsass-rails"
 gem 'bootstrap', '~> 5.3', '>= 5.3.3'
 gem 'byebug', '~> 11.1', '>= 11.1.3'
+gem 'pry', '~> 0.15.2'

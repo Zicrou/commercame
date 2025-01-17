@@ -1,0 +1,35 @@
+<%= form_with(model: reparation) do |form| %>
+  <% if reparation.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(reparation.errors.count, "error") %> prohibited this reparation from being saved:</h2>
+
+      <ul>
+        <% reparation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name, class:"form-control" %>
+  </div>
+<br>
+
+  <div class="form-group">
+    <%= form.label :probleme, style: "display: block" %>
+    <%= form.text_field :probleme, class:"form-control" %>
+  </div>
+<br>
+
+  <div class="form-group">
+    <%= form.label :Montant, style: "display: block" %>
+    <%= form.text_field :price, class:"form-control" %>
+  </div>
+<br>
+
+  <div class="form-group ">
+    <%= form.submit "Valider", class:"btn btn-primary form-control" %>
+  </div>
+<% end %>

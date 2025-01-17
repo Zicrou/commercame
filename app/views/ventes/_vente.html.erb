@@ -1,17 +1,24 @@
-<div id="<%= dom_id vente %>">
-  <p>
-    <strong>Quantity:</strong>
-    <%= vente.quantity %>
-  </p>
+<div class="">
+  <div id="<%= dom_id vente %>">
 
-  <p>
-    <strong>Price:</strong>
-    <%= vente.price %>
-  </p>
+    <p>
+      <strong>Name:</strong>
+      <%= vente.produit.name %>
+    </p>
 
-  <p>
-    <strong>Produit:</strong>
-    <%= vente.produit.name %>
-  </p>
+    <p>
+      <strong>Number:</strong>
+      <%= vente.quantity %>
+    </p>
+    <p>
+      <strong>Prix:</strong>
+      <%= vente.price %>
+    </p>
+
+    <p>
+      <strong>total:</strong>
+      <%= vente.price %>
+    </p>
+  </div>
 
 </div>

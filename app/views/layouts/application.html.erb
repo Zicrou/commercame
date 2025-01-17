@@ -24,6 +24,88 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-expand-lg bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Commerçame</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-white active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item ">
+          <%= link_to "Ventes", ventes_path(), class:"nav-link text-white" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Produits", produits_path(), class:"nav-link text-white" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Reparation", reparations_path(), class:"nav-link text-white" %>
+        </li>
+        <%
+=begin%>
+ <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Inventaire
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Action", class:"dropdown-item" %></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li> 
+<%
+=end%>
+      </ul>
+      <%# <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> %>
+    </div>
+  </div>
+</nav>
+
+<div class="container d-flex align-items-center justify-content-center">
+  <div class="row">
+    <div class="col-md-12 col-md-offset-12">
+      <p class="notice" style="color: green"><%= notice %></p>
+      <p class="alert" style="color: red"><%= alert %></p>
+      <%= yield %>
+    </div>
+  </div>
+</div>
   </body>
 </html>
+<%
+=begin%>
+ 
+
+# app/helpers/application_helper.rb
+module ApplicationHelper
+  def active_class(link_path)
+    current_page?(link_path) ? "active" : ""
+  end
+end
+
+<li class="nav-item">
+  <%= link_to "Home", root_path(), class: "nav-link text-white #{active_class(root_path)}" %>
+</li>
+<li class="nav-item">
+  <%= link_to "Ventes", ventes_path, class: "nav-link text-white #{active_class(ventes_path)}" %>
+</li>
+<li class="nav-item">
+  <%= link_to "Produits", produits_path, class: "nav-link text-white #{active_class(produits_path)}" %>
+</li>
+
+<li class="nav-item">
+  <%= link_to "Inventaire", inventaire_path, class: "nav-link text-white #{active_class(inventaire_path)}" %>
+</li>
+ 
+<%
+=end%>

@@ -1,0 +1,18 @@
+<div class="container d-flex align-items-center justify-content-center">
+  <div class="row">
+    <div class="col-md-12 col-md-offset-12">
+      <% content_for :title, "Créer une nouvelle réparation" %>
+
+      <h1>Créer une nouvelle réparation</h1>
+
+      <%= render "form", reparation: @reparation %>
+
+      <br>
+
+      <div>
+        <%= link_to "Back to reparations", reparations_path %>
+      </div>
+
+    </div>
+  </div>
+</div>

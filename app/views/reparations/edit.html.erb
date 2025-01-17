@@ -1,0 +1,12 @@
+<% content_for :title, "Editing reparation" %>
+
+<h1>Faire une modification</h1>
+
+<%= render "form", reparation: @reparation %>
+
+<br>
+
+<div>
+  <%= link_to "Voir", @reparation, class:"btn btn-warning" %> |
+  <%= link_to "Retour", reparations_path, class:"btn btn-outline-primary" %>
+</div>
